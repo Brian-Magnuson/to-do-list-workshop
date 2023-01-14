@@ -16,6 +16,14 @@ body {
   align-items: center;
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
 .list-container {
   /* self align */
   width: 70vw;
@@ -58,4 +66,35 @@ body {
   border-radius: 8px;
   /* content align */
   padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-container__item:hover {
+  /* self style */
+  text-decoration-line: line-through;
+  text-decoration-color: gray;
+  cursor: pointer;
+}
+
+.list-container__buttons span {
+  /* self style */
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.list-container__buttons .edit {
+  color: orange;
+}
+
+.list-container__buttons .delete {
+  color: red;
+}
+
+.list-container__text--done {
+  /* self style */
+  color: gray;
+  text-decoration: line-through gray;
 }

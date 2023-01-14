@@ -12,6 +12,7 @@ export default function ListContainer() {
       <h1>To Do List</h1>
       <form onSubmit={goSubmit}>
         <input className='list-container__input' type="text" name="itemName" id="itemName" />
+        <button type="submit">Add</button>
       </form>
       <div className="list-container__list">
         <ListItem />
