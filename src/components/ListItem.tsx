@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default function ListItem() {
+interface ListItemProps {
+  item: string,
+  index: number,
+  setItems: React.Dispatch<React.SetStateAction<string[]>>
+}
+export default function ListItem(props: ListItemProps) {
 
   const [isDone, setIsDone] = React.useState(false);
 
@@ -10,7 +15,7 @@ export default function ListItem() {
 
   return (
     <div className='list-container__item' onClick={goToggleIsDone}>
-      <p className={isDone ? 'list-container__text--done' : ''}>Thing</p>
+      <p className={isDone ? 'list-container__text--done' : ''}>{props.item}</p>
       <span className="list-container__buttons">
         <span className="material-symbols-outlined edit">
           edit

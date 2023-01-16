@@ -39,19 +39,39 @@ body {
 .list-container__list {
   /* self align */
   margin-top: 10px;
+  height: 370px;
   /* content align */
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow-y: auto;
+}
+
+.list-container__form {
+  /* self align */
+  margin-top: 10px;
+  /* content align */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.list-container__form button {
+  /* self align */
+  width: 20%;
+  height: 32px;
+  /* self style */
+  border-radius: 0 8px 8px 0;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
 }
 
 .list-container__input {
   /* self align */
-  margin-top: 10px;
   height: 32px;
   width: 100%;
   /* self style */
-  border-radius: 8px;
+  border-radius: 8px 0 0 8px;
   border: 1px solid black;
   font-family: 'Poppins', sans-serif;
   /* content align */
