@@ -78,43 +78,55 @@ body {
   padding: 5px;
 }
 
-.list-container__item {
+.list-item {
   /* self align */
-  height: 32px;
+  min-height: 32px;
   /* self style */
   background: #f0f0f0;
   border-radius: 8px;
   /* content align */
-  padding: 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.list-container__item:hover {
+.list-item__text {
+  /* self align */
+  width: 85%;
+  height: 100%;
+  /* content align */
+  padding: 5px;
+  overflow-wrap: break-word;
+}
+
+.list-item__text--done {
+  /* self style */
+  color: gray;
+  text-decoration: line-through gray;
+}
+
+.list-item__text:hover {
   /* self style */
   text-decoration-line: line-through;
   text-decoration-color: gray;
   cursor: pointer;
 }
 
-.list-container__buttons span {
+.list-item__button {
   /* self style */
   font-size: 20px;
   cursor: pointer;
 }
 
-.list-container__buttons .edit {
+.list-item__button.edit {
+  /* self style */
   color: orange;
 }
 
-.list-container__buttons .delete {
-  color: red;
-}
-
-.list-container__text--done {
+.list-item__button.delete {
+  /* self align */
+  margin-right: 5px;
   /* self style */
-  color: gray;
-  text-decoration: line-through gray;
+  color: red;
 }

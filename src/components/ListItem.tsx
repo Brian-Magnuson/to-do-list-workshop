@@ -13,17 +13,30 @@ export default function ListItem(props: ListItemProps) {
     setIsDone(isDone => !isDone);
   }
 
+  const goDelete = () => {
+    props.setItems((prev) => {
+      let newItems = [...prev];
+      newItems.splice(props.index, 1);
+      return newItems;
+    });
+  }
+
   return (
-    <div className='list-container__item' onClick={goToggleIsDone}>
-      <p className={isDone ? 'list-container__text--done' : ''}>{props.item}</p>
-      <span className="list-container__buttons">
-        <span className="material-symbols-outlined edit">
-          edit
-        </span>
-        <span className="material-symbols-outlined delete">
-          delete
-        </span>
-      </span>
+    <div className='list-item' onClick={goToggleIsDone}>
+      <div className={isDone
+        ? 'list-item__text list-item__text--done'
+        : 'list-item__text'
+      }>{props.item}
+      </div>
+      <div className="material-symbols-outlined list-item__button edit">
+        edit
+      </div>
+      <div
+        className="material-symbols-outlined list-item__button delete"
+        onClick={goDelete}
+      >
+        delete
+      </div>
     </div>
   );
 }
