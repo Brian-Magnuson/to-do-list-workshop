@@ -27,6 +27,7 @@ body {
 .list-container {
   /* self align */
   width: 70vw;
+  max-width: 500px;
   height: 75vh;
   /* self style */
   background-color: white;
@@ -91,9 +92,32 @@ body {
   align-items: center;
 }
 
+.list-item__form {
+  /* self align */
+  height: 100%;
+  width: 100%;
+  /* content align */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item__input {
+  /* self align */
+  width: 90%;
+  height: 100%;
+  /* self style */
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  border-radius: 8px 0 0 8px;
+  /* content align */
+  padding: 5px;
+}
+
 .list-item__text {
   /* self align */
-  width: 85%;
+  width: 90%;
   height: 100%;
   /* content align */
   padding: 5px;
@@ -120,6 +144,9 @@ body {
 }
 
 .list-item__button.edit {
+  /* self align */
+  margin-left: auto;
+  margin-right: 3px;
   /* self style */
   color: orange;
 }
@@ -129,4 +156,12 @@ body {
   margin-right: 5px;
   /* self style */
   color: red;
+}
+
+.list-item__button.done {
+  /* self align */
+  margin-right: 5px;
+  /* self style */
+  color: green;
+  border: none;
 }
