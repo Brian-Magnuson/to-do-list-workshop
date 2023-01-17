@@ -47,6 +47,11 @@ export default function ListItem(props: ListItemProps) {
       newItems.splice(props.index, 1);
       return newItems;
     });
+    props.setCrossedItems((prev) => {
+      let newItems = [...prev];
+      newItems.splice(props.index, 1);
+      return newItems;
+    });
   }
 
   if (isEditing) {
