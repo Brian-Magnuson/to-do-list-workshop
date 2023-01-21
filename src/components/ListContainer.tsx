@@ -1,8 +1,12 @@
 import React from 'react';
 import ListItem from './ListItem';
 
+// EXERCISE (2) -- Add a required 'title' prop to ListContainer
+// Reference it in the return statement below
 export default function ListContainer() {
 
+  // EXERCISE (6) -- Add state for the form values
+  // Changes to the form should update state, state changes the value of the form
   const [inputString, setInputString] = React.useState('');
   const [items, setItems] = React.useState<string[]>(() => {
     const stringVal = localStorage.getItem('items');
@@ -29,6 +33,18 @@ export default function ListContainer() {
   }, [crossedItems]);
 
 
+
+  const goSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    if (inputString != '') {
+      setItems((prev) => [...prev, inputString]);
+      setCrossedItems((prev) => [...prev, false]);
+      setInputString('');
+    }
+  }
+
+  // EXERCISE (3) -- Render ListItem components from an array
+  // Use the map function to map array elements to components
   const listItems = items.map((elem, index) =>
     <ListItem
       key={index}
@@ -39,15 +55,6 @@ export default function ListContainer() {
       setCrossedItems={setCrossedItems}
     />
   );
-
-  const goSubmit = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    if (inputString != '') {
-      setItems((prev) => [...prev, inputString]);
-      setCrossedItems((prev) => [...prev, false]);
-      setInputString('');
-    }
-  }
 
   return (
     <div className='list-container'>
@@ -63,7 +70,6 @@ export default function ListContainer() {
           id="itemName"
           value={inputString}
           onChange={(e) => setInputString(e.target.value)}
-
         />
         <button type="submit">Add</button>
       </form>

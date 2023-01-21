@@ -11,6 +11,8 @@ export default function ListItem(props: ListItemProps) {
 
   const [isEditing, setIsEditing] = React.useState(false);
   const [lastStored, setLastStored] = React.useState(props.item);
+  // EXERCISE (4) -- Create an 'isCrossedOut' state
+  // Write an event handler to toggle state
 
   const goToggleIsCrossedOut = () => {
     props.setCrossedItems((prev) => {
@@ -54,6 +56,8 @@ export default function ListItem(props: ListItemProps) {
     });
   }
 
+  // EXERCISE (5) -- Set up conditional rendering to render the input box
+  // If isEditing is true, render the edit form; else render the normal box
   if (isEditing) {
     return (
       <div className="list-item">
