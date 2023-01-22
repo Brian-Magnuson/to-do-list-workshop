@@ -9,13 +9,11 @@ export default function ListContainer() {
   // Changes to the form should update state, state changes the value of the form
   const [inputString, setInputString] = React.useState('');
   const [items, setItems] = React.useState<string[]>([]);
-  const [crossedItems, setCrossedItems] = React.useState<boolean[]>([]);
 
   const goSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (inputString != '') {
       setItems((prev) => [...prev, inputString]);
-      setCrossedItems((prev) => [...prev, false]);
       setInputString('');
     }
   }
@@ -28,8 +26,6 @@ export default function ListContainer() {
       index={index}
       item={elem}
       setItems={setItems}
-      isCrossedOut={crossedItems[index]}
-      setCrossedItems={setCrossedItems}
     />
   );
 
