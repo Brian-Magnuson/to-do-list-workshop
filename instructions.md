@@ -14,11 +14,11 @@ Navbar.tsx
 import React from 'react';
 
 export default function Navbar() {
-  return (
-    <nav className='navbar'>
-      <h3>To Do</h3>
-    </nav>
-  );
+    return (
+        <nav className='navbar'>
+            <h3>To Do</h3>
+        </nav>
+    );
 }
 ```
 
@@ -32,10 +32,10 @@ import Navbar from './components/Navbar';
 
 export default function App() {
   return (
-    <>
-      <Navbar />
-      <ListContainer />
-    </>
+        <>
+            <Navbar />
+            <ListContainer />
+        </>
   );
 }
 ```
@@ -108,10 +108,10 @@ ListContainer.tsx
 ```tsx
 const listItems = schoolItems.map((elem, index) =>
     <ListItem
-      key={index}
-      index={index}
-      item={elem}
-      setItems={setItems}
+        key={index}
+        index={index}
+        item={elem}
+        setItems={setItems}
     />
   );
 ```
@@ -126,6 +126,53 @@ ListContainer.tsx
 ```
 
 ## Exercise (4)
+In ListItem.tsx,
+Create an `isCrossedOut` state
+
+Add the following hook underneath the existing hooks
+
+ListItem.tsx
+```tsx
+const [isCrossedOut, setIsCrossedOut] = React.useState(false);
+```
+
+Create an event handler to go with it
+
+ListItem.tsx
+```tsx
+const goToggleIsCrossedOut = () => {
+    setIsCrossedOut((prev) => !prev);
+}
+```
+
+Reference the state ant the event handler in the return statement
+
+ListItem.tsx
+```tsx
+return (
+    <div className='list-item'>
+        <div
+            className={isCrossedOut
+                ? 'list-item__text list-item__text--done'
+                : 'list-item__text'}
+            onClick={goToggleIsCrossedOut}
+        >
+)
+```
+
+Go back and change the component array to use state:
+
+ListContainer.tsx
+```tsx
+const listItems = items.map((elem, index) =>
+    <ListItem
+        key={index}
+        index={index}
+        item={elem}
+        setItems={setItems}
+    />
+);
+```
 
 ## Exercise (5)
 

@@ -9,13 +9,9 @@ export default function ListItem(props: ListItemProps) {
 
   const [isEditing, setIsEditing] = React.useState(false);
   const [lastStored, setLastStored] = React.useState(props.item);
-  const [isCrossedOut, setIsCrossedOut] = React.useState(false);
+
   // EXERCISE (4) -- Create an 'isCrossedOut' state
   // Write an event handler to toggle state
-
-  const goToggleIsCrossedOut = () => {
-    setIsCrossedOut((prev) => !prev);
-  }
 
   const goToggleEdit = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -76,10 +72,9 @@ export default function ListItem(props: ListItemProps) {
     return (
       <div className='list-item'>
         <div
-          className={isCrossedOut
+          className={false
             ? 'list-item__text list-item__text--done'
             : 'list-item__text'}
-          onClick={goToggleIsCrossedOut}
         >
           {props.item}
         </div>
