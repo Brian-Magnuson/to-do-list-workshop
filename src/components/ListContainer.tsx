@@ -8,31 +8,8 @@ export default function ListContainer() {
   // EXERCISE (6) -- Add state for the form values
   // Changes to the form should update state, state changes the value of the form
   const [inputString, setInputString] = React.useState('');
-  const [items, setItems] = React.useState<string[]>(() => {
-    const stringVal = localStorage.getItem('items');
-    if (stringVal) {
-      return JSON.parse(stringVal) as string[];
-    } else {
-      return [];
-    }
-  });
-  const [crossedItems, setCrossedItems] = React.useState<boolean[]>(() => {
-    const stringVal = localStorage.getItem('crossedItems');
-    if (stringVal) {
-      return JSON.parse(stringVal) as boolean[];
-    } else {
-      return [];
-    }
-  });
-
-  React.useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
-  }, [items]);
-  React.useEffect(() => {
-    localStorage.setItem('crossedItems', JSON.stringify(crossedItems));
-  }, [crossedItems]);
-
-
+  const [items, setItems] = React.useState<string[]>([]);
+  const [crossedItems, setCrossedItems] = React.useState<boolean[]>([]);
 
   const goSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
