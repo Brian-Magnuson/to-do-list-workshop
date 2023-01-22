@@ -44,53 +44,48 @@ export default function ListItem(props: ListItemProps) {
 
   // EXERCISE (5) -- Set up conditional rendering to render the input box
   // If isEditing is true, render the edit form; else render the normal box
-  if (isEditing) {
-    return (
-      <div className="list-item">
-        <form className='list-item__form' onSubmit={goToggleEdit}>
-          <input
-            type="text"
-            name="itemName"
-            id="itemName"
-            className="list-item__input"
-            value={props.item}
-            onChange={goChangeItem}
-            autoFocus
-            onFocus={(e) => e.target.select()}
-            onBlur={goToggleEdit}
-          />
-          <button
-            className="material-symbols-outlined list-item__button done"
-            type='submit'
-          >
-            done
-          </button>
-        </form>
+
+  const inputBox = <form className='list-item__form' onSubmit={goToggleEdit}>
+    <input
+      type="text"
+      name="itemName"
+      id="itemName"
+      className="list-item__input"
+      value={props.item}
+      onChange={goChangeItem}
+      autoFocus
+      onFocus={(e) => e.target.select()}
+      onBlur={goToggleEdit}
+    />
+    <button
+      className="material-symbols-outlined list-item__button done"
+      type='submit'
+    >
+      done
+    </button>
+  </form>
+
+  return (
+    <div className='list-item'>
+      <div
+        className={false
+          ? 'list-item__text list-item__text--done'
+          : 'list-item__text'}
+      >
+        {props.item}
       </div>
-    );
-  } else {
-    return (
-      <div className='list-item'>
-        <div
-          className={false
-            ? 'list-item__text list-item__text--done'
-            : 'list-item__text'}
-        >
-          {props.item}
-        </div>
-        <div
-          className="material-symbols-outlined list-item__button edit"
-          onClick={goToggleEdit}
-        >
-          edit
-        </div>
-        <div
-          className="material-symbols-outlined list-item__button delete"
-          onClick={goDelete}
-        >
-          delete
-        </div>
+      <div
+        className="material-symbols-outlined list-item__button edit"
+        onClick={goToggleEdit}
+      >
+        edit
       </div>
-    );
-  }
+      <div
+        className="material-symbols-outlined list-item__button delete"
+        onClick={goDelete}
+      >
+        delete
+      </div>
+    </div>
+  );
 }

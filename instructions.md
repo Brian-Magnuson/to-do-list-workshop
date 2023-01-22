@@ -175,5 +175,113 @@ const listItems = items.map((elem, index) =>
 ```
 
 ## Exercise (5)
+In ListItem.tsx,
+Set up conditional rendering to render the input box
+
+End of file looks like this:
+
+ListItem.tsx
+```tsx
+const inputBox = <form className='list-item__form' onSubmit={goToggleEdit}>
+    <input
+      type="text"
+      name="itemName"
+      id="itemName"
+      className="list-item__input"
+      value={props.item}
+      onChange={goChangeItem}
+      autoFocus
+      onFocus={(e) => e.target.select()}
+      onBlur={goToggleEdit}
+    />
+    <button
+      className="material-symbols-outlined list-item__button done"
+      type='submit'
+    >
+      done
+    </button>
+  </form>
+
+  return (
+    <div className='list-item'>
+      <div
+        className={false
+          ? 'list-item__text list-item__text--done'
+          : 'list-item__text'}
+      >
+        {props.item}
+      </div>
+      <div
+        className="material-symbols-outlined list-item__button edit"
+        onClick={goToggleEdit}
+      >
+        edit
+      </div>
+      <div
+        className="material-symbols-outlined list-item__button delete"
+        onClick={goDelete}
+      >
+        delete
+      </div>
+    </div>
+  );
+```
+
+Return statement should look something like this when done:
+
+ListItem.tsx
+```tsx
+if (isEditing) {
+    return (
+      <div className="list-item">
+        <form className='list-item__form' onSubmit={goToggleEdit}>
+          <input
+            type="text"
+            name="itemName"
+            id="itemName"
+            className="list-item__input"
+            value={props.item}
+            onChange={goChangeItem}
+            autoFocus
+            onFocus={(e) => e.target.select()}
+            onBlur={goToggleEdit}
+          />
+          <button
+            className="material-symbols-outlined list-item__button done"
+            type='submit'
+          >
+            done
+          </button>
+        </form>
+      </div>
+    );
+  } else {
+    return (
+      <div className='list-item'>
+        <div
+          className={false
+            ? 'list-item__text list-item__text--done'
+            : 'list-item__text'}
+        >
+          {props.item}
+        </div>
+        <div
+          className="material-symbols-outlined list-item__button edit"
+          onClick={goToggleEdit}
+        >
+          edit
+        </div>
+        <div
+          className="material-symbols-outlined list-item__button delete"
+          onClick={goDelete}
+        >
+          delete
+        </div>
+      </div>
+    );
+  }
+```
+
+There may be alternatives that work.
 
 ## Exercise (6)
