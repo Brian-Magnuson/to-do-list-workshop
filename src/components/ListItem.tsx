@@ -14,7 +14,7 @@ export default function ListItem(props: ListItemProps) {
   // Write an event handler to toggle state
 
   const goToggleIsCrossedOut = () => {
-
+    setIsCrossedOut((prev) => !prev);
   }
 
   const goToggleEdit = (event: React.SyntheticEvent) => {
