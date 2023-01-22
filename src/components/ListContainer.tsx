@@ -39,8 +39,6 @@ export default function ListContainer() {
           type="text"
           name="itemName"
           id="itemName"
-          value={inputString}
-          onChange={(e) => setInputString(e.target.value)}
         />
         <button type="submit">Add</button>
       </form>

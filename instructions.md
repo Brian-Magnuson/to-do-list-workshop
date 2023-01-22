@@ -285,3 +285,31 @@ if (isEditing) {
 There may be alternatives that work.
 
 ## Exercise (6)
+In ListContainer.tsx,
+Add state for the form values
+
+Input element currently looks like this:
+
+ListContainer.tsx
+```tsx
+<input
+    className='list-container__input'
+    type="text"
+    name="itemName"
+    id="itemName"
+/>
+```
+
+Change input element to look like this:
+
+ListContainer.tsx
+```tsx
+<input
+    className='list-container__input'
+    type="text"
+    name="itemName"
+    id="itemName"
+    value={inputString}
+    onChange={(e) => setInputString(e.target.value)}
+/>
+```
