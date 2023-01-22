@@ -20,14 +20,12 @@ export default function ListContainer() {
 
   // EXERCISE (3) -- Render ListItem components from an array
   // Use the map function to map array elements to components
-  const listItems = items.map((elem, index) =>
-    <ListItem
-      key={index}
-      index={index}
-      item={elem}
-      setItems={setItems}
-    />
-  );
+  const schoolItems = [
+    'Read textbook chapters 1-2',
+    'Do homework on pages 20-22',
+    'Work on programming project',
+    'Go to office hours'
+  ]
 
   return (
     <div className='list-container'>
@@ -47,7 +45,10 @@ export default function ListContainer() {
         <button type="submit">Add</button>
       </form>
       <div className="list-container__list">
-        {listItems}
+        <ListItem index={0} item={schoolItems[0]} setItems={setItems} />
+        <ListItem index={1} item={schoolItems[1]} setItems={setItems} />
+        <ListItem index={2} item={schoolItems[2]} setItems={setItems} />
+        <ListItem index={3} item={schoolItems[3]} setItems={setItems} />
       </div>
     </div>
   );
