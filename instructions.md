@@ -259,7 +259,7 @@ if (isEditing) {
     return (
       <div className='list-item'>
         <div
-          className={false
+          className={ isCrossedOut
             ? 'list-item__text list-item__text--done'
             : 'list-item__text'}
         >
