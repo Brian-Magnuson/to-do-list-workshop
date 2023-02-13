@@ -160,20 +160,6 @@ return (
 )
 ```
 
-Go back and change the component array to use state:
-
-ListContainer.tsx
-```tsx
-const listItems = items.map((elem, index) =>
-    <ListItem
-        key={index}
-        index={index}
-        item={elem}
-        setItems={setItems}
-    />
-);
-```
-
 ## Exercise (5)
 In ListItem.tsx,
 Set up conditional rendering to render the input box
@@ -205,7 +191,7 @@ const inputBox = <form className='list-item__form' onSubmit={goToggleEdit}>
   return (
     <div className='list-item'>
       <div
-        className={false
+        className={ isCrossedOut
           ? 'list-item__text list-item__text--done'
           : 'list-item__text'}
       >
@@ -287,6 +273,20 @@ There may be alternatives that work.
 ## Exercise (6)
 In ListContainer.tsx,
 Add state for the form values
+
+Go back and change the component array to use state:
+
+ListContainer.tsx
+```tsx
+const listItems = items.map((elem, index) =>
+    <ListItem
+        key={index}
+        index={index}
+        item={elem}
+        setItems={setItems}
+    />
+);
+```
 
 Input element currently looks like this:
 
