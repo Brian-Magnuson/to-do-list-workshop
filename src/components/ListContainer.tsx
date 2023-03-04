@@ -3,7 +3,11 @@ import ListItem from './ListItem';
 
 // EXERCISE (2) -- Add a required 'title' prop to ListContainer
 // Reference it in the return statement below
-export default function ListContainer() {
+type ListContainerProps = {
+  title: string
+}
+
+export default function ListContainer(props: ListContainerProps) {
 
   // EXERCISE (6) -- Add state for the form values
   // Changes to the form should update state, state changes the value of the form
@@ -30,11 +34,7 @@ export default function ListContainer() {
     })
   }
   const deleteItem = (index: number) => {
-    setItems(items => {
-      let newItems = [...items];
-      newItems.splice(index, 1);
-      return newItems;
-    })
+    setItems(items => items.slice(index, 1))
   }
 
   // EXERCISE (3) -- Render ListItem components from an array
@@ -50,7 +50,6 @@ export default function ListContainer() {
     return (
       <ListItem
         key={index}
-        index={index}
         item={elem}
         setItem={item => setItem(index, item)}
         deleteItem={() => deleteItem(index)}
@@ -60,7 +59,7 @@ export default function ListContainer() {
 
   return (
     <div className='list-container'>
-      <h1>To Do List</h1>
+      <h1>{props.title}</h1>
       <form
         className='list-container__form'
         onSubmit={onSubmit}

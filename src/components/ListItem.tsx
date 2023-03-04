@@ -1,15 +1,16 @@
 import React from 'react';
 
 type ListItemProps = {
-  index: number,
   item: string,
   setItem: (item: string) => void
   deleteItem: () => void
 }
+
 export default function ListItem(props: ListItemProps) {
 
   const [isEditing, setIsEditing] = React.useState(false);
-  const [inputString, setInputString] = React.useState(props.item);
+  const [inputString, setInputString] = React.useState('');
+  const [isCrossedOut, setIsCrossedOut] = React.useState(false);
   // EXERCISE (4) -- Create an 'isCrossedOut' state
   // Write an event handler to toggle state
 
@@ -35,9 +36,13 @@ export default function ListItem(props: ListItemProps) {
     props.deleteItem();
   }
 
+  const onCrossedOutToggle = () => {
+    setIsCrossedOut((prev) => !prev);
+  }
+
   // EXERCISE (5) -- Set up conditional rendering to render the input box
   // If isEditing is true, render the edit form; else render the normal box
-  const inputBox = <form className='list-item__form' onSubmit={onSave}>
+  const inputBox = () => <form className='list-item__form' onSubmit={onSave}>
     <input
       type="text"
       name="itemName"
@@ -57,11 +62,12 @@ export default function ListItem(props: ListItemProps) {
     </button>
   </form>
 
-  const itemDisplay = <>
+  const itemDisplay = () => <>
     <div
-      className={false
+      className={isCrossedOut
         ? 'list-item__text list-item__text--done'
         : 'list-item__text'}
+      onClick={onCrossedOutToggle}
     >
       {props.item}
     </div>
@@ -82,8 +88,8 @@ export default function ListItem(props: ListItemProps) {
   return (
     <div className='list-item'>
       {isEditing
-        ? inputBox
-        : itemDisplay}
+        ? inputBox()
+        : itemDisplay()}
     </div>
   );
 }

@@ -9,7 +9,9 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <ListContainer />
+      <ListContainer
+        title="School Work"
+      />
     </>
   );
 }

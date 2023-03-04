@@ -95,10 +95,26 @@ Initial return:
 ListContainer.tsx
 ```tsx
 <div className="list-container__list">
-    <ListItem index={0} item={schoolItems[0]} setItems={setItems} />
-    <ListItem index={1} item={schoolItems[1]} setItems={setItems} />
-    <ListItem index={2} item={schoolItems[2]} setItems={setItems} />
-    <ListItem index={3} item={schoolItems[3]} setItems={setItems} />
+    <ListItem 
+      item={schoolItems[0]} 
+      setItem={item => setItem(0, item)} 
+      deleteItem={() => deleteItem(0)}
+    />
+    <ListItem 
+      item={schoolItems[1]} 
+      setItem={item => setItem(1, item)} 
+      deleteItem={() => deleteItem(1)}
+    />
+    <ListItem 
+      item={schoolItems[2]} 
+      setItem={item => setItem(2, item)} 
+      deleteItem={() => deleteItem(2)}
+    />
+    <ListItem 
+      item={schoolItems[3]} 
+      setItem={item => setItem(3, item)} 
+      deleteItem={() => deleteItem(3)}
+    />
 </div>
 ```
 
@@ -109,10 +125,10 @@ ListContainer.tsx
 const listItems = schoolItems.map((elem, index) =>
     <ListItem
         key={index}
-        index={index}
         item={elem}
-        setItems={setItems}
-    />
+        setItem={item => setItem(index, item)}
+        deleteItem={() => deleteItem(index)}
+      />
   );
 ```
 
@@ -140,7 +156,7 @@ Create an event handler to go with it
 
 ListItem.tsx
 ```tsx
-const goToggleIsCrossedOut = () => {
+const onCrossedOutToggle = () => {
     setIsCrossedOut((prev) => !prev);
 }
 ```
@@ -168,21 +184,21 @@ End of file looks like this:
 
 ListItem.tsx
 ```tsx
-const inputBox = <form className='list-item__form' onSubmit={goToggleEdit}>
+const inputBox = <form className='list-item__form' onSubmit={onSave}>
     <input
       type="text"
       name="itemName"
       id="itemName"
       className="list-item__input"
-      value={props.item}
-      onChange={goChangeItem}
+      value={inputString}
+      onChange={onItemChange}
       autoFocus
       onFocus={(e) => e.target.select()}
-      onBlur={goToggleEdit}
+      onBlur={onSave}
     />
     <button
       className="material-symbols-outlined list-item__button done"
-      type='submit'
+      onClick={onSave}
     >
       done
     </button>
@@ -191,24 +207,25 @@ const inputBox = <form className='list-item__form' onSubmit={goToggleEdit}>
   return (
     <div className='list-item'>
       <div
-        className={ isCrossedOut
+        className={isCrossedOut
           ? 'list-item__text list-item__text--done'
           : 'list-item__text'}
+        onClick={onCrossedOutToggle}
       >
         {props.item}
       </div>
-      <div
+      <button
         className="material-symbols-outlined list-item__button edit"
-        onClick={goToggleEdit}
+        onClick={onEdit}
       >
         edit
-      </div>
-      <div
+      </button>
+      <button
         className="material-symbols-outlined list-item__button delete"
-        onClick={goDelete}
+        onClick={onDelete}
       >
         delete
-      </div>
+      </button>
     </div>
   );
 ```
@@ -220,21 +237,21 @@ ListItem.tsx
 if (isEditing) {
     return (
       <div className="list-item">
-        <form className='list-item__form' onSubmit={goToggleEdit}>
+        <form className='list-item__form' onSubmit={onSave}>
           <input
             type="text"
             name="itemName"
             id="itemName"
             className="list-item__input"
-            value={props.item}
-            onChange={goChangeItem}
+            value={inputString}
+            onChange={onItemChange}
             autoFocus
             onFocus={(e) => e.target.select()}
-            onBlur={goToggleEdit}
+            onBlur={onSave}
           />
           <button
             className="material-symbols-outlined list-item__button done"
-            type='submit'
+            onClick={onSave}
           >
             done
           </button>
@@ -245,24 +262,25 @@ if (isEditing) {
     return (
       <div className='list-item'>
         <div
-          className={ isCrossedOut
+          className={isCrossedOut
             ? 'list-item__text list-item__text--done'
             : 'list-item__text'}
+          onClick={onCrossedOutToggle}
         >
           {props.item}
         </div>
-        <div
+        <button
           className="material-symbols-outlined list-item__button edit"
-          onClick={goToggleEdit}
+          onClick={onEdit}
         >
           edit
-        </div>
-        <div
+        </button>
+        <button
           className="material-symbols-outlined list-item__button delete"
-          onClick={goDelete}
+          onClick={onDelete}
         >
           delete
-        </div>
+        </button>
       </div>
     );
   }
@@ -278,14 +296,16 @@ Go back and change the component array to use state:
 
 ListContainer.tsx
 ```tsx
-const listItems = items.map((elem, index) =>
-    <ListItem
+const listItems = items.map((elem, index) => {
+    return (
+      <ListItem
         key={index}
-        index={index}
         item={elem}
-        setItems={setItems}
-    />
-);
+        setItem={item => setItem(index, item)}
+        deleteItem={() => deleteItem(index)}
+      />
+    )
+  })
 ```
 
 Input element currently looks like this:
