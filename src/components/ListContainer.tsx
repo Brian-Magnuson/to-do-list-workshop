@@ -3,11 +3,8 @@ import ListItem from './ListItem';
 
 // EXERCISE (2) -- Add a required 'title' prop to ListContainer
 // Reference it in the return statement below
-type ListContainerProps = {
-  title: string
-}
 
-export default function ListContainer(props: ListContainerProps) {
+export default function ListContainer() {
 
   // EXERCISE (6) -- Add state for the form values
   // Changes to the form should update state, state changes the value of the form
@@ -44,7 +41,7 @@ export default function ListContainer(props: ListContainerProps) {
 
   return (
     <div className='list-container'>
-      <h1>{props.title}</h1>
+      <h1>To Do</h1>
       <form
         className='list-container__form'
         onSubmit={onSubmit}
