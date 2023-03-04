@@ -25,7 +25,6 @@ export default function ListItem(props: ListItemProps) {
 
   const onSave = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(inputString);
     if (inputString !== '') {
       props.setItem(inputString);
     }

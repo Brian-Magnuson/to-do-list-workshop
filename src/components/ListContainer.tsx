@@ -14,10 +14,6 @@ export default function ListContainer(props: ListContainerProps) {
   const [inputString, setInputString] = React.useState('');
   const [items, setItems] = React.useState<string[]>([]);
 
-  React.useEffect(() => {
-    console.log(items);
-  }, [items]);
-
   const onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (inputString !== '') {
@@ -46,7 +42,7 @@ export default function ListContainer(props: ListContainerProps) {
     'Go to office hours'
   ]
 
-  const listItems = items.map((elem, index) => {
+  const listItems = schoolItems.map((elem, index) => {
     return (
       <ListItem
         key={index}
@@ -69,8 +65,6 @@ export default function ListContainer(props: ListContainerProps) {
           type="text"
           name="itemName"
           id="itemName"
-          value={inputString}
-          onChange={(e) => setInputString(e.target.value)}
         />
         <button type="submit">Add</button>
       </form>
