@@ -10,12 +10,31 @@ export default function ListContainer() {
   const [inputString, setInputString] = React.useState('');
   const [items, setItems] = React.useState<string[]>([]);
 
-  const goSubmit = (event: React.SyntheticEvent) => {
+  React.useEffect(() => {
+    console.log(items);
+  }, [items]);
+
+  const onSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (inputString !== '') {
       setItems((prev) => [...prev, inputString]);
       setInputString('');
     }
+  }
+
+  const setItem = (index: number, item: string) => {
+    setItems(items => {
+      let newItems = [...items];
+      newItems.splice(index, 1, item);
+      return newItems;
+    })
+  }
+  const deleteItem = (index: number) => {
+    setItems(items => {
+      let newItems = [...items];
+      newItems.splice(index, 1);
+      return newItems;
+    })
   }
 
   // EXERCISE (3) -- Render ListItem components from an array
@@ -27,26 +46,37 @@ export default function ListContainer() {
     'Go to office hours'
   ]
 
+  const listItems = items.map((elem, index) => {
+    return (
+      <ListItem
+        key={index}
+        index={index}
+        item={elem}
+        setItem={item => setItem(index, item)}
+        deleteItem={() => deleteItem(index)}
+      />
+    )
+  })
+
   return (
     <div className='list-container'>
       <h1>To Do List</h1>
       <form
         className='list-container__form'
-        onSubmit={goSubmit}
+        onSubmit={onSubmit}
       >
         <input
           className='list-container__input'
           type="text"
           name="itemName"
           id="itemName"
+          value={inputString}
+          onChange={(e) => setInputString(e.target.value)}
         />
         <button type="submit">Add</button>
       </form>
       <div className="list-container__list">
-        <ListItem index={0} item={schoolItems[0]} setItems={setItems} />
-        <ListItem index={1} item={schoolItems[1]} setItems={setItems} />
-        <ListItem index={2} item={schoolItems[2]} setItems={setItems} />
-        <ListItem index={3} item={schoolItems[3]} setItems={setItems} />
+        {listItems}
       </div>
     </div>
   );

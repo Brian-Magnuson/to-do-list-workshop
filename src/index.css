@@ -171,6 +171,7 @@
   margin-right: 3px;
   /* self style */
   color: orange;
+  border: none;
 }
 
 .list-item__button.delete {
@@ -178,6 +179,7 @@
   margin-right: 5px;
   /* self style */
   color: red;
+  border: none;
 }
 
 .list-item__button.done {
