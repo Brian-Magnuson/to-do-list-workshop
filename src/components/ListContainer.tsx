@@ -12,7 +12,7 @@ export default function ListContainer() {
 
   const goSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    if (inputString != '') {
+    if (inputString !== '') {
       setItems((prev) => [...prev, inputString]);
       setInputString('');
     }

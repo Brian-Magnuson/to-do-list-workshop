@@ -16,7 +16,7 @@ import React from 'react';
 export default function Navbar() {
     return (
         <nav className='navbar'>
-            <h3>To Do</h3>
+            <h1>To Do</h1>
         </nav>
     );
 }
@@ -51,11 +51,11 @@ ListContainer.tsx
 export default function ListContainer()
 ```
 
-Add interface and props parameter:
+Add type and props parameter:
 
 ListContainer.tsx
 ```tsx
-interface ListContainerProps {
+type ListContainerProps = {
     title: string
 }
 export default function ListContainer(props: ListContainerProps)

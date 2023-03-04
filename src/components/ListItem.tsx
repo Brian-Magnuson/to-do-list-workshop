@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ListItemProps {
+type ListItemProps = {
   index: number,
   item: string,
   setItems: React.Dispatch<React.SetStateAction<string[]>>
@@ -9,16 +9,18 @@ export default function ListItem(props: ListItemProps) {
 
   const [isEditing, setIsEditing] = React.useState(false);
   const [lastStored, setLastStored] = React.useState(props.item);
+  const [inputString, setInputString] = React.useState(props.item);
   // EXERCISE (4) -- Create an 'isCrossedOut' state
   // Write an event handler to toggle state
 
   const goToggleEdit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    setLastStored(props.item);
-    if (props.item == '') {
+    setInputString(props.item);
+    // Prevents setting list item name to nothing if input is ''
+    if (inputString !== '') {
       props.setItems((prev) => {
         let newItems = [...prev];
-        newItems[props.index] = lastStored;
+        newItems[props.index] = inputString;
         return newItems;
       });
     }
@@ -26,11 +28,7 @@ export default function ListItem(props: ListItemProps) {
   }
 
   const goChangeItem = (event: React.ChangeEvent<HTMLInputElement>) => {
-    props.setItems((prev) => {
-      let newItems = [...prev];
-      newItems[props.index] = event.target.value;
-      return newItems;
-    });
+    setInputString(event.target.value);
   }
 
   const goDelete = () => {
