@@ -42,17 +42,6 @@ export default function ListContainer(props: ListContainerProps) {
     'Go to office hours'
   ]
 
-  const listItems = schoolItems.map((elem, index) => {
-    return (
-      <ListItem
-        key={index}
-        item={elem}
-        setItem={item => setItem(index, item)}
-        deleteItem={() => deleteItem(index)}
-      />
-    )
-  })
-
   return (
     <div className='list-container'>
       <h1>{props.title}</h1>
@@ -69,7 +58,26 @@ export default function ListContainer(props: ListContainerProps) {
         <button type="submit">Add</button>
       </form>
       <div className="list-container__list">
-        {listItems}
+        <ListItem
+          item={schoolItems[0]}
+          setItem={item => setItem(0, item)}
+          deleteItem={() => deleteItem(0)}
+        />
+        <ListItem
+          item={schoolItems[1]}
+          setItem={item => setItem(1, item)}
+          deleteItem={() => deleteItem(1)}
+        />
+        <ListItem
+          item={schoolItems[2]}
+          setItem={item => setItem(2, item)}
+          deleteItem={() => deleteItem(2)}
+        />
+        <ListItem
+          item={schoolItems[3]}
+          setItem={item => setItem(3, item)}
+          deleteItem={() => deleteItem(3)}
+        />
       </div>
     </div>
   );
