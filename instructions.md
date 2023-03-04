@@ -184,48 +184,9 @@ End of file looks like this:
 
 ListItem.tsx
 ```tsx
-const inputBox = <form className='list-item__form' onSubmit={onSave}>
-    <input
-      type="text"
-      name="itemName"
-      id="itemName"
-      className="list-item__input"
-      value={inputString}
-      onChange={onItemChange}
-      autoFocus
-      onFocus={(e) => e.target.select()}
-      onBlur={onSave}
-    />
-    <button
-      className="material-symbols-outlined list-item__button done"
-      onClick={onSave}
-    >
-      done
-    </button>
-  </form>
-
-  return (
+return (
     <div className='list-item'>
-      <div
-        className={isCrossedOut
-          ? 'list-item__text list-item__text--done'
-          : 'list-item__text'}
-        onClick={onCrossedOutToggle}
-      >
-        {props.item}
-      </div>
-      <button
-        className="material-symbols-outlined list-item__button edit"
-        onClick={onEdit}
-      >
-        edit
-      </button>
-      <button
-        className="material-symbols-outlined list-item__button delete"
-        onClick={onDelete}
-      >
-        delete
-      </button>
+      {itemDisplay()}
     </div>
   );
 ```
@@ -234,56 +195,13 @@ Return statement should look something like this when done:
 
 ListItem.tsx
 ```tsx
-if (isEditing) {
-    return (
-      <div className="list-item">
-        <form className='list-item__form' onSubmit={onSave}>
-          <input
-            type="text"
-            name="itemName"
-            id="itemName"
-            className="list-item__input"
-            value={inputString}
-            onChange={onItemChange}
-            autoFocus
-            onFocus={(e) => e.target.select()}
-            onBlur={onSave}
-          />
-          <button
-            className="material-symbols-outlined list-item__button done"
-            onClick={onSave}
-          >
-            done
-          </button>
-        </form>
-      </div>
-    );
-  } else {
-    return (
-      <div className='list-item'>
-        <div
-          className={isCrossedOut
-            ? 'list-item__text list-item__text--done'
-            : 'list-item__text'}
-          onClick={onCrossedOutToggle}
-        >
-          {props.item}
-        </div>
-        <button
-          className="material-symbols-outlined list-item__button edit"
-          onClick={onEdit}
-        >
-          edit
-        </button>
-        <button
-          className="material-symbols-outlined list-item__button delete"
-          onClick={onDelete}
-        >
-          delete
-        </button>
-      </div>
-    );
-  }
+return (
+    <div className='list-item'>
+      {isEditing
+        ? inputBox()
+        : itemDisplay()}
+    </div>
+  );
 ```
 
 There may be alternatives that work.

@@ -86,9 +86,7 @@ export default function ListItem(props: ListItemProps) {
 
   return (
     <div className='list-item'>
-      {isEditing
-        ? inputBox()
-        : itemDisplay()}
+      {itemDisplay()}
     </div>
   );
 }
