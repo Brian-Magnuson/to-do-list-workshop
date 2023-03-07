@@ -27,7 +27,11 @@ export default function ListContainer() {
     })
   }
   const deleteItem = (index: number) => {
-    setItems(items => items.slice(index, 1))
+    setItems((items) => {
+      let newItems = [...items];
+      newItems.splice(index, 1);
+      return newItems;
+    });
   }
 
   // EXERCISE (3) -- Render ListItem components from an array
