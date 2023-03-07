@@ -161,19 +161,20 @@ const onCrossedOutToggle = () => {
 }
 ```
 
-Reference the state ant the event handler in the return statement
+Reference the state ant the event handler in the itemDisplay function
 
 ListItem.tsx
 ```tsx
-return (
-    <div className='list-item'>
-        <div
-            className={isCrossedOut
-                ? 'list-item__text list-item__text--done'
-                : 'list-item__text'}
-            onClick={goToggleIsCrossedOut}
-        >
-)
+const itemDisplay = () => (
+    <>
+      <div
+        className={
+          isCrossedOut ? 'list-item__text list-item__text--done' : 'list-item__text'
+        }
+        onClick={onCrossedOutToggle}
+      >
+        {props.item}
+      </div>
 ```
 
 ## Exercise (5)
