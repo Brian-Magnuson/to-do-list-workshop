@@ -1,4 +1,4 @@
-# ToDoListWorkshop
+# To-Do List Workshop
 
 A simple to-do list app that allows editing items and saves items to local storage.
 

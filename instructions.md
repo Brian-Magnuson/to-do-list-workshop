@@ -95,26 +95,26 @@ Initial return:
 ListContainer.tsx
 ```tsx
 <div className="list-container__list">
-    <ListItem 
-      item={schoolItems[0]} 
-      setItem={item => setItem(0, item)} 
-      deleteItem={() => deleteItem(0)}
-    />
-    <ListItem 
-      item={schoolItems[1]} 
-      setItem={item => setItem(1, item)} 
-      deleteItem={() => deleteItem(1)}
-    />
-    <ListItem 
-      item={schoolItems[2]} 
-      setItem={item => setItem(2, item)} 
-      deleteItem={() => deleteItem(2)}
-    />
-    <ListItem 
-      item={schoolItems[3]} 
-      setItem={item => setItem(3, item)} 
-      deleteItem={() => deleteItem(3)}
-    />
+  <ListItem
+    item={schoolItems[0]}
+    updateItem={item => updateItem(item)}
+    deleteItem={() => deleteItem(schoolItems[0].id)}
+  />
+  <ListItem
+    item={schoolItems[1]}
+    updateItem={item => updateItem(item)}
+    deleteItem={() => deleteItem(schoolItems[1].id)}
+  />
+  <ListItem
+    item={schoolItems[2]}
+    updateItem={item => updateItem(item)}
+    deleteItem={() => deleteItem(schoolItems[2].id)}
+  />
+  <ListItem
+    item={schoolItems[3]}
+    updateItem={item => updateItem(item)}
+    deleteItem={() => deleteItem(schoolItems[3].id)}
+  />
 </div>
 ```
 
@@ -122,14 +122,14 @@ Add the following above the return statement:
 
 ListContainer.tsx
 ```tsx
-const listItems = schoolItems.map((elem, index) =>
-    <ListItem
-        key={index}
-        item={elem}
-        setItem={item => setItem(index, item)}
-        deleteItem={() => deleteItem(index)}
-      />
-  );
+const listItems = schoolItems.map(item =>
+  <ListItem
+    key={item.id}
+    item={item}
+    updateItem={item => updateItem(item)}
+    deleteItem={() => deleteItem(item.id)}
+  />
+);
 ```
 
 Change the return statement to render `listItems` instead of the raw components:
@@ -156,12 +156,12 @@ Create an event handler to go with it
 
 ListItem.tsx
 ```tsx
-const onCrossedOutToggle = () => {
+const handleCrossedOutToggle = () => {
     setIsCrossedOut((prev) => !prev);
 }
 ```
 
-Reference the state ant the event handler in the itemDisplay function
+Reference the state and the event handler in the itemDisplay function
 
 ListItem.tsx
 ```tsx
@@ -171,9 +171,9 @@ const itemDisplay = () => (
         className={
           isCrossedOut ? 'list-item__text list-item__text--done' : 'list-item__text'
         }
-        onClick={onCrossedOutToggle}
+        onClick={handleCrossedOutToggle}
       >
-        {props.item}
+        {props.item.content}
       </div>
 ```
 
