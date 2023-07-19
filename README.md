@@ -67,7 +67,7 @@ git clone https://github.com/Brian-Magnuson/to-do-list-workshop.git
 
 If you do not have git installed, you can download the files from the repository page and extract them into an empty directory on your computer.
 
-However, I highly recommend that you install git. It's an powerful tool ubiquitous in the world of software development.
+However, I highly recommend that you install git. It's a powerful tool ubiquitous in the world of software development.
 
 https://git-scm.com/
 
@@ -81,7 +81,7 @@ https://code.visualstudio.com/
 
 If you prefer using another text editor, make sure you know how to use it. 
 
-Open the repository in your text editory. (In VSCode: File > Open Folder...)
+Open the repository in your text editor. (In VSCode: File > Open Folder...)
 
 ### 5. Install the node modules
 
