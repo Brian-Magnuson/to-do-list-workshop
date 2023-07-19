@@ -1,8 +1,8 @@
 import React from 'react';
 
 type ListItemProps = {
-  item: string,
-  setItem: (item: string) => void
+  item: Item,
+  updateItem: (item: Item) => void
   deleteItem: () => void
 }
 
@@ -13,44 +13,44 @@ export default function ListItem(props: ListItemProps) {
   // EXERCISE (4) -- Create an 'isCrossedOut' state
   // Write an event handler to toggle state
 
-  const onItemChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleItemChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputString(event.target.value);
   }
 
-  const onEdit = () => {
-    setInputString(props.item);
+  const handleEdit = () => {
+    setInputString(props.item.content);
     setIsEditing(true);
   }
 
-  const onSave = (e: React.SyntheticEvent) => {
+  const handleSave = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (inputString !== '') {
-      props.setItem(inputString);
+      props.updateItem({ ...props.item, content: inputString });
     }
     setIsEditing(false);
   }
 
-  const onDelete = () => {
+  const handleDelete = () => {
     props.deleteItem();
   }
 
   // EXERCISE (5) -- Set up conditional rendering to render the input box
   // If isEditing is true, render the edit form; else render the normal box
-  const inputBox = () => <form className='list-item__form' onSubmit={onSave}>
+  const inputBox = () => <form className='list-item__form' onSubmit={handleSave}>
     <input
       type="text"
       name="itemName"
       id="itemName"
       className="list-item__input"
       value={inputString}
-      onChange={onItemChange}
+      onChange={handleItemChange}
       autoFocus
       onFocus={(e) => e.target.select()}
-      onBlur={onSave}
+      onBlur={handleSave}
     />
     <button
       className="material-symbols-outlined list-item__button done"
-      onClick={onSave}
+      onClick={handleSave}
     >
       done
     </button>
@@ -62,17 +62,17 @@ export default function ListItem(props: ListItemProps) {
         ? 'list-item__text list-item__text--done'
         : 'list-item__text'}
     >
-      {props.item}
+      {props.item.content}
     </div>
     <button
       className="material-symbols-outlined list-item__button edit"
-      onClick={onEdit}
+      onClick={handleEdit}
     >
       edit
     </button>
     <button
       className="material-symbols-outlined list-item__button delete"
-      onClick={onDelete}
+      onClick={handleDelete}
     >
       delete
     </button>
