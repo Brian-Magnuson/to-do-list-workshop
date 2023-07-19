@@ -62,7 +62,7 @@ nvm use lts
 If you have git installed, you can go into any directory, open a terminal instance, and run
 
 ```
-git clone https://github.com/Brian-Magnuson/ToDoListWorkshop.git
+git clone https://github.com/Brian-Magnuson/to-do-list-workshop.git
 ```
 
 If you do not have git installed, you can download the files from the repository page and extract them into an empty directory on your computer.
