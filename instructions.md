@@ -215,16 +215,14 @@ Go back and change the component array to use state:
 
 ListContainer.tsx
 ```tsx
-const listItems = items.map((elem, index) => {
-    return (
-      <ListItem
-        key={index}
-        item={elem}
-        setItem={item => setItem(index, item)}
-        deleteItem={() => deleteItem(index)}
-      />
-    )
-  })
+const listItems = items.map(item =>
+  <ListItem
+    key={item.id}
+    item={item}
+    updateItem={item => updateItem(item)}
+    deleteItem={() => deleteItem(item.id)}
+  />
+);
 ```
 
 Input element currently looks like this:

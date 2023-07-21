@@ -28,14 +28,23 @@ export default function ListContainer() {
     setItems(items => {
       const newItems = [...items];
       const targetIndex = newItems.findIndex((element) => element.id === item.id);
-      newItems[targetIndex].content = item.content;
+      if (targetIndex !== -1) {
+        newItems[targetIndex].content = item.content;
+      } else {
+        console.error('Target index not found.');
+      }
       return newItems;
     })
   }
-  const deleteItem = (index: number) => {
+  const deleteItem = (id: string) => {
     setItems((items) => {
       const newItems = [...items];
-      newItems.splice(index, 1);
+      const targetIndex = newItems.findIndex((element) => element.id === id);
+      if (targetIndex !== -1) {
+        newItems.splice(targetIndex, 1);
+      } else {
+        console.error('Target index not found');
+      }
       return newItems;
     });
   }
@@ -68,22 +77,22 @@ export default function ListContainer() {
         <ListItem
           item={schoolItems[0]}
           updateItem={item => updateItem(item)}
-          deleteItem={() => deleteItem(0)}
+          deleteItem={() => deleteItem('1')}
         />
         <ListItem
           item={schoolItems[1]}
           updateItem={item => updateItem(item)}
-          deleteItem={() => deleteItem(1)}
+          deleteItem={() => deleteItem('2')}
         />
         <ListItem
           item={schoolItems[2]}
           updateItem={item => updateItem(item)}
-          deleteItem={() => deleteItem(2)}
+          deleteItem={() => deleteItem('3')}
         />
         <ListItem
           item={schoolItems[3]}
           updateItem={item => updateItem(item)}
-          deleteItem={() => deleteItem(3)}
+          deleteItem={() => deleteItem('4')}
         />
       </div>
     </div>
